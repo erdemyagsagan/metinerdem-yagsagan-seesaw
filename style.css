@@ -45,6 +45,12 @@ body {
   position: relative;
   margin: 0 auto;
   transform-origin: center center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.plank:hover {
+  background: #555;
 }
 
 .pivot {
