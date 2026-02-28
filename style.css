@@ -14,12 +14,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 80px;
  
 }
 
 .info {
   display: flex;
   gap: 35px;
+  margin-bottom: 90px;
 }
 
 .info-box {
@@ -56,25 +58,23 @@ body {
 }
 
 .pivot {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background: rgb(255, 94, 0);
   position: absolute;
   left: 50%;
-  margin-top: 20px;
+  margin-top: 21px;
   transform: translateX(-50%);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 
 .object {
-  position: absolute;
-  top: -51px;       
+  position: absolute;       
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   color: white;
-  border-radius: 7px;
- 
+  border-radius: 7px; 
 }

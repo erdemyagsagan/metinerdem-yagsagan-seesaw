@@ -1,9 +1,16 @@
 const plank = document.getElementById("plank");
-const leftWeightEl = document.getElementById("leftWeight");
-const rightWeightEl = document.getElementById("rightWeight");
+const leftWeight = document.getElementById("leftWeight");
+const rightWeight = document.getElementById("rightWeight");
+const totalAngle = document.getElementById("totalAngle")
+const nextWeight = document.getElementById("nextWeight")
+
+
 
 const objects = [];
 let nmbrId = 1;
+let comingWeight = randomWeight(); 
+nextWeight.textContent = comingWeight; // ilk baslatma icin kg gosterimi
+
 
 
 plank.addEventListener("click", (e) => {
@@ -19,7 +26,7 @@ function randomWeight() {
 function addObject(click) {
   const mid = plank.clientWidth / 2; 
   const distance = click - mid;        // left -, right +
-  const weight = randomWeight();
+  const weight = comingWeight;
 
   const obj = {id: nmbrId++, weight, distance, x: click};
 
@@ -28,6 +35,9 @@ function addObject(click) {
   updateWeights();
   tiltPlank(); 
 
+  comingWeight = randomWeight();          
+  nextWeight.textContent = comingWeight; // ilk baslatmadan sonraki degerler icin kg gosterimi
+
   console.log("objects:", objects);
 }
 
@@ -35,6 +45,7 @@ function addObject(click) {
 // objeyi uretir
 function renderObject(obj) {
 const objstyle = document.createElement("div");
+
   objstyle.className = "object";
   objstyle.textContent = obj.weight;
 
@@ -44,6 +55,7 @@ const objstyle = document.createElement("div");
     height: ${size}px;
     font-size: ${size / 3}px;
     left: ${obj.x - size / 2}px;
+    top: ${-size}px;
     background: hsl(${obj.weight * 25}, 70%, 45%);
   `;
 
@@ -61,8 +73,8 @@ function updateWeights(){
     else if (obj.distance > 0) right += obj.weight;
   }
 
-  leftWeightEl.textContent = left
-  rightWeightEl.textContent = right
+  leftWeight.textContent = left
+  rightWeight.textContent = right
 }
 
 // seesaw iki tarafa da maks 30 derece egimlenebilme
@@ -85,5 +97,8 @@ function tiltPlank() {
   const angle = clamp(rawAngle, -30, 30);
 
   let rotateAngle = plank.style.transform = `rotate(${angle}deg)`;
+
+  totalAngle.textContent = angle
   console.log(rotateAngle);
+  
 }
