@@ -50,7 +50,7 @@ body {
   cursor: pointer;
   transition: background 0.2s ease;
   border-radius: 11px;
-  transition: transform 0.5s ease;
+  transition: transform 0.8s ease;
 }
 
 .plank:hover {
@@ -78,3 +78,22 @@ body {
   color: white;
   border-radius: 7px; 
 }
+
+.reset-button{
+  background-color:#df5d4f;
+  margin-top: 20px;
+  border-radius: 15px;
+  width: 150px;
+  height: 35px;
+  color: white;
+  font-weight: bold;
+  transition-duration: 0.4s;
+  
+}
+
+.reset-button:hover{
+    background-color:#c0392b; /* Green */
+}
+
+
+

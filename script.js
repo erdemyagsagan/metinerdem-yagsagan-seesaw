@@ -34,6 +34,7 @@ function addObject(click) {
   renderObject(obj);
   updateWeights();
   tiltPlank(); 
+  saveProgres();
 
   comingWeight = randomWeight();          
   nextWeight.textContent = comingWeight; // ilk baslatmadan sonraki degerler icin kg gosterimi
@@ -49,7 +50,7 @@ const objstyle = document.createElement("div");
   objstyle.className = "object";
   objstyle.textContent = obj.weight;
 
-  const size = 18 + obj.weight * 3;
+  const size = 22 + obj.weight * 3;
   objstyle.style.cssText = `
     width: ${size}px;
     height: ${size}px;
@@ -77,10 +78,6 @@ function updateWeights(){
   rightWeight.textContent = right
 }
 
-// seesaw iki tarafa da maks 30 derece egimlenebilme
-function clamp(value, min, max) {
-  return Math.max(min, Math.min(max, value));
-}
 
 // tork hesaplama
 function tiltPlank() {
@@ -93,8 +90,7 @@ function tiltPlank() {
     else if (d > 0) rightT += obj.weight * d;
   }
 
-  const rawAngle = (rightT - leftT) / 10;
-  const angle = clamp(rawAngle, -30, 30);
+  const angle = Math.max(-30, Math.min(30, (rightT - leftT) / 10));
 
   let rotateAngle = plank.style.transform = `rotate(${angle}deg)`;
 
@@ -102,3 +98,29 @@ function tiltPlank() {
   console.log(rotateAngle);
   
 }
+
+function saveProgres() {
+  localStorage.setItem("seesawprogress", JSON.stringify(objects));
+}
+
+function loadProgress() {
+  const saved = localStorage.getItem("seesawprogress");
+  if (!saved) return;
+
+  const parsed = JSON.parse(saved);
+
+  for (const obj of parsed) {
+    objects.push(obj);
+    renderObject(obj);
+  }
+
+  updateWeights();
+  tiltPlank();
+}
+
+function resetBoard() {
+    localStorage.removeItem("seesawprogress")
+    location.reload()    
+}
+
+loadProgress();
