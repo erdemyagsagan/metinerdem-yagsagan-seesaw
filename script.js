@@ -26,6 +26,7 @@ function addObject(click) {
   objects.push(obj);
   renderObject(obj);
   updateWeights();
+  tiltPlank(); 
 
   console.log("objects:", objects);
 }
@@ -62,4 +63,27 @@ function updateWeights(){
 
   leftWeightEl.textContent = left
   rightWeightEl.textContent = right
+}
+
+// seesaw iki tarafa da maks 30 derece egimlenebilme
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+// tork hesaplama
+function tiltPlank() {
+  let leftT = 0, rightT = 0;
+
+  for (const obj of objects) {
+    const d = obj.distance;
+
+    if (d < 0) leftT += obj.weight * Math.abs(d);
+    else if (d > 0) rightT += obj.weight * d;
+  }
+
+  const rawAngle = (rightT - leftT) / 10;
+  const angle = clamp(rawAngle, -30, 30);
+
+  let rotateAngle = plank.style.transform = `rotate(${angle}deg)`;
+  console.log(rotateAngle);
 }
