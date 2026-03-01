@@ -3,6 +3,8 @@ const leftWeight = document.getElementById("leftWeight");
 const rightWeight = document.getElementById("rightWeight");
 const totalAngle = document.getElementById("totalAngle");
 const nextWeight = document.getElementById("nextWeight");
+const dropSound = new Audio("sounds/drop-item-sound.wav");
+const resetSound = new Audio("sounds/reset-button.wav");
 
 const objects = [];
 let nmbrId = 1;
@@ -29,6 +31,7 @@ function addObject(click) {
   objects.push(obj);
   renderObject(obj);
   updateWeights();
+  objectDrop();
   tiltPlank();
   saveProgres();
 
@@ -112,8 +115,16 @@ function loadProgress() {
 }
 
 function resetBoard() {
-  localStorage.removeItem("seesawprogress");
-  location.reload();
+  resetSound.play();
+  setTimeout(() => {
+    localStorage.removeItem("seesawprogress");
+    location.reload();
+  }, 150); // ses gelmedigi icin 150ms gecikme
+}
+
+function objectDrop() {
+  dropSound.currentTime = 0; // aynı sesi üst üste çalabilmek için
+  dropSound.play();
 }
 
 loadProgress();
