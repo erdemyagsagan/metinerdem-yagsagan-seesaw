@@ -1,43 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seesaw Simulation</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
-  <div class="container">
-
-    <div class="info">
-      <div class="info-box">
-        Left Weight: <span id="leftWeight">0</span> kg
-      </div>
-
-      <div class="info-box">
-        Right Weight: <span id="rightWeight">0</span> kg
-      </div>
-      <div class="info-box">
-        Angle: <span id="totalAngle">0</span> Degree
-      </div>
-      <div class="info-box">
-        Next Weight: <span id="nextWeight">0</span> kg
-      </div>
-
-      
-    </div>
-
-    <div class="seesaw-cover">
-      <div class="plank" id="plank"></div>
-      <div class="pivot"></div>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seesaw Simulation</title>
     
-    <button class="reset-button" onclick="resetBoard()">Reset</button>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    
+    <div class="container">
+      <h1 class="title">Seesaw Simulation</h1>
+      
+      <div class="info">
+        <div class="info-box">
+          <span class="label">Left Weight</span>
+          <span class="value"><span id="leftWeight">0</span> kg</span>
+        </div>
+        <div class="info-box">
+          <span class="label">Right Weight</span>
+          <span class="value"><span id="rightWeight">0</span> kg</span>
+        </div>
+        <div class="info-box">
+          <span class="label">Angle</span>
+          <span class="value"> <span id="totalAngle">0</span>°</span>
+        </div>
+        <div class="info-box">
+          <span class="label">Next Weight</span>
+          <span class="value"><span id="nextWeight">0 </span> kg</span>
+        </div>
+      </div>
 
+      <div class="seesaw-cover">
+        <div class="plank" id="plank"></div>
+        <div class="pivot"></div>
+      </div>
 
-  </div>
+      <button class="reset-button" onclick="resetBoard()">Reset</button>
+    </div>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

@@ -1,17 +1,13 @@
 const plank = document.getElementById("plank");
 const leftWeight = document.getElementById("leftWeight");
 const rightWeight = document.getElementById("rightWeight");
-const totalAngle = document.getElementById("totalAngle")
-const nextWeight = document.getElementById("nextWeight")
-
-
+const totalAngle = document.getElementById("totalAngle");
+const nextWeight = document.getElementById("nextWeight");
 
 const objects = [];
 let nmbrId = 1;
-let comingWeight = randomWeight(); 
+let comingWeight = randomWeight();
 nextWeight.textContent = comingWeight; // ilk baslatma icin kg gosterimi
-
-
 
 plank.addEventListener("click", (e) => {
   addObject(e.offsetX);
@@ -19,33 +15,32 @@ plank.addEventListener("click", (e) => {
 
 // 1-10 arasinda sayi uretir
 function randomWeight() {
-  return Math.floor(Math.random() * 10) + 1; 
+  return Math.floor(Math.random() * 10) + 1;
 }
 
 // objeyi ekler
 function addObject(click) {
-  const mid = plank.clientWidth / 2; 
-  const distance = click - mid;        // left -, right +
+  const mid = plank.clientWidth / 2;
+  const distance = click - mid; // left -, right +
   const weight = comingWeight;
 
-  const obj = {id: nmbrId++, weight, distance, x: click};
+  const obj = { id: nmbrId++, weight, distance, x: click };
 
   objects.push(obj);
   renderObject(obj);
   updateWeights();
-  tiltPlank(); 
+  tiltPlank();
   saveProgres();
 
-  comingWeight = randomWeight();          
+  comingWeight = randomWeight();
   nextWeight.textContent = comingWeight; // ilk baslatmadan sonraki degerler icin kg gosterimi
 
   console.log("objects:", objects);
 }
 
-
 // objeyi uretir
 function renderObject(obj) {
-const objstyle = document.createElement("div");
+  const objstyle = document.createElement("div");
 
   objstyle.className = "object";
   objstyle.textContent = obj.weight;
@@ -63,25 +58,24 @@ const objstyle = document.createElement("div");
   plank.appendChild(objstyle);
 }
 
-
 // eklenen objeye gore agirligi gunceller
-function updateWeights(){
-    let right = 0
-    let left = 0
+function updateWeights() {
+  let right = 0;
+  let left = 0;
 
-    for (const obj of objects) {
+  for (const obj of objects) {
     if (obj.distance < 0) left += obj.weight;
     else if (obj.distance > 0) right += obj.weight;
   }
 
-  leftWeight.textContent = left
-  rightWeight.textContent = right
+  leftWeight.textContent = left;
+  rightWeight.textContent = right;
 }
-
 
 // tork hesaplama
 function tiltPlank() {
-  let leftT = 0, rightT = 0;
+  let leftT = 0,
+    rightT = 0;
 
   for (const obj of objects) {
     const d = obj.distance;
@@ -92,11 +86,10 @@ function tiltPlank() {
 
   const angle = Math.max(-30, Math.min(30, (rightT - leftT) / 10));
 
-  let rotateAngle = plank.style.transform = `rotate(${angle}deg)`;
+  let rotateAngle = (plank.style.transform = `rotate(${angle}deg)`);
 
-  totalAngle.textContent = angle
+  totalAngle.textContent = angle;
   console.log(rotateAngle);
-  
 }
 
 function saveProgres() {
@@ -119,8 +112,8 @@ function loadProgress() {
 }
 
 function resetBoard() {
-    localStorage.removeItem("seesawprogress")
-    location.reload()    
+  localStorage.removeItem("seesawprogress");
+  location.reload();
 }
 
 loadProgress();
