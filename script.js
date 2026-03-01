@@ -3,6 +3,7 @@ const leftWeight = document.getElementById("leftWeight");
 const rightWeight = document.getElementById("rightWeight");
 const totalAngle = document.getElementById("totalAngle");
 const nextWeight = document.getElementById("nextWeight");
+
 const dropSound = new Audio("sounds/drop-item-sound.wav");
 const resetSound = new Audio("sounds/reset-button.wav");
 
@@ -15,12 +16,12 @@ plank.addEventListener("click", (e) => {
   addObject(e.offsetX);
 });
 
-// 1-10 arasinda sayi uretir
+// 1-10 arasinda sayi uret
 function randomWeight() {
   return Math.floor(Math.random() * 10) + 1;
 }
 
-// objeyi ekler
+// Obje ekleme
 function addObject(click) {
   const mid = plank.clientWidth / 2;
   const distance = click - mid; // left -, right +
@@ -42,7 +43,7 @@ function addObject(click) {
   console.log("objects:", objects);
 }
 
-// objeyi uretir
+// Obje uret
 function renderObject(obj) {
   const objstyle = document.createElement("div");
 
@@ -62,7 +63,7 @@ function renderObject(obj) {
   plank.appendChild(objstyle);
 }
 
-// eklenen objeye gore agirligi gunceller
+// Eklenen objeye gore agirligi guncelle
 function updateWeights() {
   let right = 0;
   let left = 0;
@@ -76,7 +77,7 @@ function updateWeights() {
   rightWeight.textContent = right;
 }
 
-// tork hesaplama
+// Tork hesaplama
 function tiltPlank() {
   let leftT = 0,
     rightT = 0;
@@ -92,7 +93,14 @@ function tiltPlank() {
 
   let rotateAngle = (plank.style.transform = `rotate(${angle}deg)`);
 
-  totalAngle.textContent = angle;
+  if (angle < 0) {
+    totalAngle.textContent = `${Math.abs(angle)}° to the left`;
+  } else if (angle > 0) {
+    totalAngle.textContent = `${angle}° to the right`;
+  } else {
+    totalAngle.textContent = "0°";
+  }
+
   console.log(rotateAngle);
 }
 
@@ -100,6 +108,7 @@ function saveProgres() {
   localStorage.setItem("seesawprogress", JSON.stringify(objects));
 }
 
+// LocalStorage'a kaydet
 function loadProgress() {
   const saved = localStorage.getItem("seesawprogress");
   const parsed = JSON.parse(saved);
@@ -113,6 +122,7 @@ function loadProgress() {
   tiltPlank();
 }
 
+// Reset butonu tiklama efekti
 function resetBoard() {
   resetSound.play();
   setTimeout(() => {
@@ -121,11 +131,12 @@ function resetBoard() {
   }, 150); // ses gelmedigi icin 150ms gecikme
 }
 
+// Dusme efekti
 function objectDrop() {
-  dropSound.currentTime = 0; // aynı sesi üst üste çalabilmek için
   dropSound.play();
 }
 
+// Drop box info ekrani
 function showDropInfo(obj) {
   const side = obj.distance < 0 ? "Left" : "Right";
   const dist = Math.abs(Math.round(obj.distance));
@@ -135,7 +146,7 @@ function showDropInfo(obj) {
   item.textContent = `${obj.weight}kg dropped on the ${side} side, ${dist}px away from center`;
 
   const log = document.getElementById("dropLog");
-  log.prepend(item); // ← yeni gelen en üste gelsin
+  log.prepend(item);
 }
 
 loadProgress();

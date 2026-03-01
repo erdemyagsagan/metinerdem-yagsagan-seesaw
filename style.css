@@ -129,6 +129,7 @@ body {
   font-weight: bold;
   color: white;
   border-radius: 7px;
+  animation: dropBox 0.4s ease;
 }
 
 .reset-button {
@@ -171,5 +172,15 @@ background: white;
   background:#e6e5e5;
   color: #333;
   border-left: 4px solid #ff5c5c;
+  animation: slideIn 0.4s ease;
+}
 
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes dropBox {
+  from { opacity: 0; transform: translateY(-15px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
