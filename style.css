@@ -14,16 +14,17 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  margin-bottom: 150px;
+  margin-top: 190px;
+  transform: scale(0.7); /* ← ekle */
+  transform-origin: top center; /* ← ekle */
 }
 
 .title {
-  font-size: 2.5vw; 
-  margin-bottom: 5vw;
+  font-size: 32px;
   font-weight: 700;
   letter-spacing: 1px;
   color: #333;
-
+  margin-bottom: 80px;
 }
 
 .seesaw-frame {
@@ -41,7 +42,7 @@ body {
 .info {
   display: flex;
   flex-direction: row;
-  gap: 2vw;
+  gap: 35px;
   margin-bottom: 15px;
 }
 
@@ -50,7 +51,7 @@ body {
   padding: 15px 21px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  min-width: 12vw;
+  min-width: 170px;
   text-align: center;
   transition:
     transform 0.2s ease,
@@ -65,18 +66,18 @@ body {
 .label {
   display: block;
   margin-bottom: 8px;
-  font-size: 1.4vw;
+  font-size: 18px;
 }
 
 .value {
   font-weight: bold;
-  font-size: 2vw;
+  font-size: 25px;
 }
 
 .seesaw-cover {
   background: #f0f0f0;
   border-radius: 16px;
-  padding: 15vw 8vw;
+  padding: 180px 100px;
   border: 2px solid rgba(0, 0, 0, 0.06);
   position: relative;
 }
@@ -91,11 +92,10 @@ body {
   font-weight: bold;
   padding: 6px 12px;
   border-radius: 7px;
-  
 }
 
 .plank {
-  width: 40vw;
+  width: 500px;
   height: 20px;
   background: linear-gradient(to right, #3b3b3b, #1f1f1f);
   border-radius: 6px;
@@ -159,7 +159,7 @@ body {
   gap: 6px;
   margin-top: 4px;
   padding: 10px;
-background: white;
+  background: white;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
@@ -170,18 +170,30 @@ background: white;
   border-radius: 7px;
   font-size: 13px;
   font-weight: bold;
-  background:#e6e5e5;
+  background: #e6e5e5;
   color: #333;
   border-left: 4px solid #ff5c5c;
   animation: slideIn 0.4s ease;
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateX(-8px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes dropBox {
-  from { opacity: 0; transform: translateY(-15px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
