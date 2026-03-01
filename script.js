@@ -30,6 +30,7 @@ function addObject(click) {
 
   objects.push(obj);
   renderObject(obj);
+  showDropInfo(obj);
   updateWeights();
   objectDrop();
   tiltPlank();
@@ -101,8 +102,6 @@ function saveProgres() {
 
 function loadProgress() {
   const saved = localStorage.getItem("seesawprogress");
-  if (!saved) return;
-
   const parsed = JSON.parse(saved);
 
   for (const obj of parsed) {
@@ -125,6 +124,18 @@ function resetBoard() {
 function objectDrop() {
   dropSound.currentTime = 0; // aynı sesi üst üste çalabilmek için
   dropSound.play();
+}
+
+function showDropInfo(obj) {
+  const side = obj.distance < 0 ? "Left" : "Right";
+  const dist = Math.abs(Math.round(obj.distance));
+
+  const item = document.createElement("div");
+  item.className = "drop-log-item";
+  item.textContent = `${obj.weight}kg dropped on the ${side} side, ${dist}px away from center`;
+
+  const log = document.getElementById("dropLog");
+  log.prepend(item); // ← yeni gelen en üste gelsin
 }
 
 loadProgress();
