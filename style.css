@@ -18,11 +18,12 @@ body {
 }
 
 .title {
-  font-size: 32px;
+  font-size: 2.5vw; 
+  margin-bottom: 5vw;
   font-weight: 700;
   letter-spacing: 1px;
   color: #333;
-  margin-bottom: 80px;
+
 }
 
 .seesaw-frame {
@@ -40,7 +41,7 @@ body {
 .info {
   display: flex;
   flex-direction: row;
-  gap: 35px;
+  gap: 2vw;
   margin-bottom: 15px;
 }
 
@@ -49,7 +50,7 @@ body {
   padding: 15px 21px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  min-width: 170px;
+  min-width: 12vw;
   text-align: center;
   transition:
     transform 0.2s ease,
@@ -64,18 +65,18 @@ body {
 .label {
   display: block;
   margin-bottom: 8px;
-  font-size: 18px;
+  font-size: 1.4vw;
 }
 
 .value {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 2vw;
 }
 
 .seesaw-cover {
   background: #f0f0f0;
   border-radius: 16px;
-  padding: 180px 100px;
+  padding: 15vw 8vw;
   border: 2px solid rgba(0, 0, 0, 0.06);
   position: relative;
 }
@@ -94,7 +95,7 @@ body {
 }
 
 .plank {
-  width: 500px;
+  width: 40vw;
   height: 20px;
   background: linear-gradient(to right, #3b3b3b, #1f1f1f);
   border-radius: 6px;
